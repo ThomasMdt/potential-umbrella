@@ -1,1 +1,5 @@
-<p>i-input works!</p>
+<mat-form-field appearance="fill">
+  <mat-label>{{options.label}}</mat-label>
+  <input matInput  [ngModel]="value" [placeholder]="options.placeholder" (ngModelChange)="change($event)">
+</mat-form-field>
+<app-errors  *ngIf="control.invalid && control.touched" [errors]="control.errors" [validateConfig]="validators"></app-errors>

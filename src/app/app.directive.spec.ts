@@ -1,8 +1,8 @@
-import { AppDirective } from './app.directive';
+import { DynamicControlDirective } from './dynamic-control.directive';
 
 describe('AppDirective', () => {
   it('should create an instance', () => {
-    const directive = new AppDirective();
+    const directive = new DynamicControlDirective();
     expect(directive).toBeTruthy();
   });
 });

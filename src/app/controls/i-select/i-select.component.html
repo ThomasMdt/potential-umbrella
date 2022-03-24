@@ -1,1 +1,10 @@
-<p>i-select works!</p>
+<div>
+<mat-form-field appearance="fill">
+  <mat-label>{{options?.label}}</mat-label>
+  <mat-select [ngModel]="value" (ngModelChange)="change($event)">
+    <mat-option *ngFor="let option of options?.options" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>

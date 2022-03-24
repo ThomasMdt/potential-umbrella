@@ -1,1 +1,5 @@
-<p>dynamic-forms works!</p>
+<form [formGroup]="form">
+    <ng-template *ngFor="let item of settings" dynamic [config]="item">
+    </ng-template>
+</form>
+<button mat-flat-button color="primary" (click)="save()">Submit</button>
