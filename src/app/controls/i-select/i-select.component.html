@@ -1,10 +1,11 @@
 <div>
-<mat-form-field appearance="fill">
-  <mat-label>{{options?.label}}</mat-label>
-  <mat-select [ngModel]="value" (ngModelChange)="change($event)">
-    <mat-option *ngFor="let option of options?.options" [value]="option">
-      {{option}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{options?.label}}</mat-label>
+    <mat-select [ngModel]="value" (ngModelChange)="change($event)">
+      <mat-option *ngFor="let option of options?.options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-errors *ngIf="control.invalid && control.touched" [errors]="control.errors" [validateConfig]="validators"></app-errors>
 </div>

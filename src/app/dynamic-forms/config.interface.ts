@@ -1,4 +1,5 @@
 import {ValidatorFn} from "@angular/forms";
+import {ThemePalette} from "@angular/material/core";
 
 export interface Config {
   name: string;
@@ -20,4 +21,10 @@ export interface ValidatorsOption {
     fn: ValidatorFn,
     message: string
   }
+}
+export interface ButtonOptions {
+  defaultValue: any;
+  handler: (value: any) => any;
+  text: string;
+  color: ThemePalette;
 }

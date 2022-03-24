@@ -1,7 +1,8 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {APP_CONFIG, FormsConfig} from "../forms.config";
-import {FormGroup, FormBuilder, Validators, NG_VALUE_ACCESSOR, FormControl, ValidatorFn} from "@angular/forms";
+import {FormGroup, NG_VALUE_ACCESSOR, FormControl} from "@angular/forms";
 import {Config} from "./config.interface";
+import {DYNAMIC_FORMS_CONFIG, FormsConfig} from "../forms.config";
+
 @Component({
   selector: 'dynamic-forms',
   templateUrl: './dynamic-forms.component.html',
@@ -15,10 +16,10 @@ import {Config} from "./config.interface";
 export class DynamicFormsComponent implements OnInit {
 
   @Input() settings!: Config[];
-
+  @Input() index: number = 0;
   readonly form: FormGroup;
 
-  constructor(@Inject(APP_CONFIG) private config: FormsConfig, private fb: FormBuilder) {
+  constructor(@Inject(DYNAMIC_FORMS_CONFIG) private config: FormsConfig[]) {
     this.form = new FormGroup({});
   }
 
@@ -33,6 +34,7 @@ export class DynamicFormsComponent implements OnInit {
   }
 
   registerOnChange(fn: any) {
+    fn(this.form.value);
     this.form.valueChanges.subscribe(values => fn(values));
   }
 
@@ -44,17 +46,20 @@ export class DynamicFormsComponent implements OnInit {
     this.extendSettings();
     this.createFormGroup();
   }
+
   createFormGroup() {
     this.settings.forEach((setting: any) => {
       this.form.addControl(setting.name, this.createControl(setting));
     })
   }
-  createControl(setting: any) {
-    return new FormControl('', Object.values(setting.validators || []).map((v: any) => v.fn as ValidatorFn));
+  createControl(setting: Config) {
+    const validatorsOption = Object.values(setting.validators || []).map(v => v.fn);
+    return new FormControl('', validatorsOption);
   }
   extendSettings() {
+    const config = this.config[this.index];
     this.settings = this.settings.map(
-      (setting: any) => Object.assign(setting, {component: this.config[setting.type]}))
+      (setting: Config) => Object.assign(setting, {component: config[setting.type]}));
   }
   save() {
     this.form.markAllAsTouched();

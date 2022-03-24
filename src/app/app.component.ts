@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Config, InputOptions, SelectOptions} from "./dynamic-forms/config.interface";
+import {AfterViewInit, Component} from '@angular/core';
+import {Config} from "./dynamic-forms/config.interface";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -29,14 +29,28 @@ export class AppComponent {
       options: {
         label: 'Last name',
         placeholder: 'Choose option',
-        options: ['ss', 'sss3', 'ssss5']
+        options: ['option1', 'option2', 'option3']
+      },
+      validators: {
+        required: {
+          fn: Validators.required,
+          message: 'Not empty'
+        }
+      }
+    },
+    {
+      type: 'button',
+      name: 'button',
+      options: {
+        defaultValue: 0,
+        text: 'button',
+        color: 'primary',
+        handler: (value: any) => value += 1
       }
     }
   ];
   readonly form = new FormGroup({
     forms: new FormControl({})
   })
-  constructor() {
-
-  }
+  constructor() {}
 }

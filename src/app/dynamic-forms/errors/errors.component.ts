@@ -8,13 +8,15 @@ import {ValidatorsOption} from "../config.interface";
   styleUrls: ['./errors.component.css']
 })
 export class ErrorsComponent implements OnInit {
+
   @Input() errors: ValidationErrors | null = null;
   @Input() validateConfig: ValidatorsOption = {};
-  keys: string[] = [];
-  constructor() { }
+
+  errorNames: string[] = [];
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.keys = Object.keys(this.errors || {});
+    this.errorNames = Object.keys(this.errors || {});
   }
-
 }

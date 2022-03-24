@@ -1,5 +1,7 @@
-<form [formGroup]="form">
-    <ng-template *ngFor="let item of settings" dynamic [config]="item">
+<form [formGroup]="form" class="form">
+    <ng-template *ngFor="let setting of settings" dynamic [config]="setting">
     </ng-template>
 </form>
-<button mat-flat-button color="primary" (click)="save()">Submit</button>
+<div class="button-wrapper">
+  <button mat-flat-button color="primary" (click)="save()">Submit</button>
+</div>

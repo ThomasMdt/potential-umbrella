@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicFormsComponent } from './dynamic-forms.component';
+import { IButtonComponent } from './i-button.component';
 
-describe('DynamicFormsComponent', () => {
-  let component: DynamicFormsComponent;
-  let fixture: ComponentFixture<DynamicFormsComponent>;
+describe('IButtonComponent', () => {
+  let component: IButtonComponent;
+  let fixture: ComponentFixture<IButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DynamicFormsComponent ]
+      declarations: [ IButtonComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DynamicFormsComponent);
+    fixture = TestBed.createComponent(IButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

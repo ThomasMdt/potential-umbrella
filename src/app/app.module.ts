@@ -9,12 +9,13 @@ import { DynamicControlDirective } from './dynamic-control.directive';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {APP_CONFIG} from "./forms.config";
+import {DYNAMIC_FORMS_CONFIG} from "./forms.config";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ISelectComponent } from './controls/i-select/i-select.component';
 import {MatSelectModule} from "@angular/material/select";
 import { ErrorsComponent } from './dynamic-forms/errors/errors.component';
+import { IButtonComponent } from './controls/i-button/i-button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ErrorsComponent } from './dynamic-forms/errors/errors.component';
     IInputComponent,
     DynamicControlDirective,
     ISelectComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    IButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,13 @@ import { ErrorsComponent } from './dynamic-forms/errors/errors.component';
     MatSelectModule
   ],
   providers: [{
-    provide: APP_CONFIG, useValue: {input: IInputComponent, select: ISelectComponent}
+    provide: DYNAMIC_FORMS_CONFIG,
+    useValue: {
+      input: IInputComponent,
+      select: ISelectComponent,
+      button: IButtonComponent
+    },
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

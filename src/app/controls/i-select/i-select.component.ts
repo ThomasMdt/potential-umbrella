@@ -1,6 +1,6 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {SelectOptions} from "../../dynamic-forms/config.interface";
+import {SelectOptions, ValidatorsOption} from "../../dynamic-forms/config.interface";
 
 @Component({
   selector: 'i-select',
@@ -17,6 +17,7 @@ import {SelectOptions} from "../../dynamic-forms/config.interface";
 export class ISelectComponent implements ControlValueAccessor {
   @Input() options?: SelectOptions;
   @Input() control!: FormControl;
+  @Input() validators!: ValidatorsOption;
 
   value: any = null;
 
